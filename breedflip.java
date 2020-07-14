@@ -46,7 +46,6 @@ public class breedflip {
         InputReader r = new InputReader();
         PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter("breedflip.out")));
         
-        // should print everything to console (works)
         int n = r.nextInt();
         String str1 = r.next();
         String str2 = r.next();
