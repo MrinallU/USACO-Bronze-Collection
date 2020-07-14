@@ -5,7 +5,7 @@ TASK: milktemp
 */
 import java.io.*;
 import java.util.*;
-public class Main {
+public class milktemp{
     public static void main(String[] args) throws Exception {
         Scanner s = new Scanner(new File("milktemp.in"));
         PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("milktemp.out")));
