@@ -4,7 +4,6 @@ ID: your_id_here
 LANG: JAVA
 TASK: billboard
 */
-import javax.imageio.ImageTranscoder;
 import java.io.*;
 import java.util.*;
 public class billboard{
