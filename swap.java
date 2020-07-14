@@ -56,7 +56,6 @@ public class swap {
         InputReader r = new InputReader();
         PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter("swap.out")));
         
-        // should print everything to console (works)
         N = r.nextInt();
         K = r.nextInt();
         A1 = r.nextInt();
