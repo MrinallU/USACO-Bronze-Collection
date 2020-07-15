@@ -5,6 +5,7 @@ A collection of USACO bronze solutions for the purpose to help anyone starting t
 or improve on mine. 
 2. Just search the file of the desired solution.
 # Disclaimers
-1. Only three solutions are not completely correct, as in they only miss about 1 test case. The rest are all right. Please ignore the question rejuvenate
-because I have not tried that one yet. 
+1. Only three solutions only miss about 1 test case. The rest are all right. 
+2. Please ignore the question revegetate.java because that one is open for people to try for themselves it is a harder question so anyone that gives me a solution different from the official one becomes a contributor! 
+
 
