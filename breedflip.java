@@ -1,68 +1,54 @@
-import java.util.*;
+
+/*
+ID: your_id_here
+LANG: JAVA
+TASK: breedflip
+*/
 import java.io.*;
 
-public class breedflip {
+import java.util.*;
 
-    static class InputReader {
-        BufferedReader reader;
-        StringTokenizer tokenizer;
+    public class breedflip{
 
-        public InputReader() throws FileNotFoundException {
-            reader = new BufferedReader(new FileReader("breedflip.in"));
-            tokenizer = null;
-        }
+    public char[] swap(char [] a, int st , int e){
 
-
-        public boolean hasNext() {
-            return tokenizer.hasMoreTokens();
-        }
-
-        String next() {
-            while (tokenizer == null || !tokenizer.hasMoreTokens()) {
-                try {
-                    tokenizer = new StringTokenizer(reader.readLine());
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
+        for (int i = st; i <= e; i++) {
+            if(a[i] == 'G'){
+                a[i] = 'H';
+            }else{
+                a[i] = 'G';
             }
-            return tokenizer.nextToken();
         }
-
-        public int nextInt() {
-            return Integer.parseInt(next());
-        }
-
-        public long nextLong() {
-            return Long.parseLong(next());
-        }
-
-        public double nextDouble() {
-            return Double.parseDouble(next());
-        }
-
+        return a;
     }
 
-    public static void main(String[] args) throws FileNotFoundException, IOException {
-        InputReader r = new InputReader();
-        PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter("breedflip.out")));
-        
-        int n = r.nextInt();
-        String str1 = r.next();
-        String str2 = r.next();
-        boolean flag = false;
-        int count = 0;
-        for (int i = 0; i < n; i++) {
-            if (str1.charAt(i) != str2.charAt(i)) {
-                if (!flag) {
-                    flag = true;
-                    count++;
+    public static void main(String[] args) throws IOException {
+        Scanner sc = new Scanner(new File("breedflip.in"));
+        PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("breedflip.out")));
+        int len = sc.nextInt();  String a = sc.next(); String b = sc.next(); int ans = 0 ;
+        char [] A = a.toCharArray(); char [] B = b.toCharArray();
+        while(!Arrays.equals(A, B)){
+            int start = -1; int end = 0;
+            for (int i = 0; i < len; i++) {
+                if(A[i] != B[i]){
+                    if(start == -1){
+                        start = i;
+                        end = start;
+                    }else {
+                        end = i;
+                    }
+                }else if(start > -1){
+                    break;
                 }
             }
-            else {
-              flag = false;
-            }
+            B = new  breedflip().swap(B, start, end);
+            ans++;
         }
-        pw.println(count);
-        pw.close();
+        out.println(ans);
+        out.close();
     }
 }
+
+
+
+
