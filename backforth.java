@@ -1,37 +1,40 @@
-
-/*
-ID: your_id_here
-LANG: JAVA
-TASK: backforth
-*/
+ 
 import java.io.*;
 import java.util.*;
 
 
 public class backforth{
     public static HashSet<Integer> s = new HashSet<>();
-    public static void add(ArrayList<Integer> a, ArrayList<Integer> b, int currVal, int day){
+    public static void add(ArrayList<Integer> a, ArrayList<Integer> b, int currVal, int day){ // recursive to keep track of all possible pail combinations through the six days.
         if(day == 6){
-            s.add(currVal);
+            s.add(currVal); // Add the current reading of the 1st barn after all the five days have passed.
         }else if(day == 1){
-             add(a, b, 1000, day + 1);
-         }else if(day % 2 == 0){
-             for (int i = 0; i < a.size(); i++) {
-                 int val = currVal; val -= a.get(i);  ArrayList<Integer> ta = new ArrayList<>(a); ArrayList<Integer> tb = new ArrayList<>(b);
+             add(a, b, 1000, day + 1); // It is Monday so don't do anything except keep the current milk reaidng aty 1000
+         }else if(day % 2 == 0){ // On the even days (Tuesday and Thursay)
+             for (int i = 0; i < a.size(); i++) { // Recurse through all the pails of the first barn.
+                 int val = currVal; 
+                 val -= a.get(i);  // fill milk from first barn pail
+                 ArrayList<Integer> ta = new ArrayList<>(a); 
+                 ArrayList<Integer> tb = new ArrayList<>(b);
+                 
                  Collections.copy(ta, a);
                  Collections.copy(tb, b);
 
 
-                 tb.add(ta.get(i)); ta.remove(i);
-                 add(ta, tb, val, day + 1);
+                 tb.add(ta.get(i)); // pour into the second barn and leave the pail at the second barn.
+                 ta.remove(i); // get rid of the pail transfered in the first barn.
+                 add(ta, tb, val, day + 1); // recurse to the next day
              }
-         }else if(day % 2 != 0){
-            for (int i = 0; i < b.size(); i++) {
-                int val = currVal; val += b.get(i);  ArrayList<Integer> ta = new ArrayList<>(a); ArrayList<Integer> tb = new ArrayList<>(b);
+         }else if(day % 2 != 0){ // On the odd days (Wednesday and Friday)
+            for (int i = 0; i < b.size(); i++) { // recurse through all the pails of the second barn
+                int val = currVal; 
+                val += b.get(i);  // Takes a bucket from the first barn and fills it to the second barn. 
+                ArrayList<Integer> ta = new ArrayList<>(a); 
+                ArrayList<Integer> tb = new ArrayList<>(b);
 
-
-                ta.add(tb.get(i)); tb.remove(i);
-                add(ta, tb, val, day + 1);
+                ta.add(tb.get(i)); // Add the pail from the second banr to the first barn.
+                tb.remove(i); // Remove the pail fom the second barn as it was transfered ot the first.
+                add(ta, tb, val, day + 1); // Recurse to the next day
             }
          }
 
@@ -39,16 +42,17 @@ public class backforth{
     public static void main(String[] args) throws Exception {
         FastIO sc = new FastIO("backforth.in");
         PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("backforth.out")));
-        ArrayList<Integer> a = new ArrayList<>();    ArrayList<Integer> b = new ArrayList<>();
+        ArrayList<Integer> a = new ArrayList<>();  // All the pails from the first barn.
+        ArrayList<Integer> b = new ArrayList<>();  // All the pails from the seocnd barn.
         for (int i = 0; i < 10; i++) {
             a.add(sc.nextInt());
         }
         for (int i = 0; i < 10; i++) {
             b.add(sc.nextInt());
         }
-        s.add(1000);
+        s.add(1000); // Add the inital reading of the first barn to the hashset
         add(a, b, 1000, 1);
-        out.println(s.size());
+        out.println(s.size()); // Output all of the unique readings done by the first barn that is possible on the sixth day
         out.close();
     }
 
