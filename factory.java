@@ -1,9 +1,4 @@
-
-/*
-ID: your_id_here
-LANG: JAVA
-TASK: factory
-*/
+ 
 import java.io.*;
 
 import java.util.*;
@@ -15,12 +10,12 @@ class Graph{
         this.V = V;
         adj = new ArrayList<ArrayList<Integer> >(V);
         for (int i = 0; i < V; i++){
-            adj.add(new ArrayList<Integer>());
+            adj.add(new ArrayList<Integer>()); // Creating the adjacency list
         }
     }
     void addEdge(int u, int v) {
 
-        adj.get(v).add(u);
+        adj.get(v).add(u); // Connecting the two factories.
 
     }
     
@@ -38,17 +33,16 @@ class Graph{
         {
             int n = i.next();
             if (!visited[n]) {
-                ans += DFSUtil(n, visited);
+                ans += DFSUtil(n, visited); // recurse to the next edge and increase the numebr of stations visited.v
             }
         }
-        return ans;
+        return ans; // return number of visited stations.
     }
 
     // The function to do DFS traversal. It uses recursive DFSUtil()
     int DFS(int v)
     {
-        // Mark all the vertices as not visited(set as
-        // false by default in java)
+        // Mark all the vertices as not visited(set as false by default)
         boolean visited[] = new boolean[V];
 
         // Call the recursive helper function to print DFS traversal
@@ -62,17 +56,18 @@ public class factory{
         PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("factory.out")));
         int N = sc.nextInt(); Graph  g = new Graph(N); boolean used = false;
         for (int i = 0; i < N - 1; i++) {
-            g.addEdge(sc.nextInt() - 1, sc.nextInt() - 1);
+            g.addEdge(sc.nextInt() - 1, sc.nextInt() - 1); // Meaning one can walk from station A to station B. 
         }
         for (int i = 0; i < N; i++) {
             int ans = g.DFS(i);
             if(ans >= N) {
-                out.println(i + 1); used = true;
+                out.println(i + 1); // if the number of visited stations from the DFS is equal to the number of stations then then it is possible to walk form station i to any other station. 
+                used = true;
                 break;
             }
         }
         if(!used){
-            out.println(-1);
+            out.println(-1); // If no such station exists then we print -1.
         }
 
 
