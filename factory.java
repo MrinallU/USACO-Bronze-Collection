@@ -23,7 +23,7 @@ class Graph{
     int DFSUtil(int v,boolean visited[])
     {
         int ans  = 0;
-        // Mark the current node as visited and print it
+        // Mark the current node as visited
         visited[v] = true;
         ans++;
 
@@ -33,7 +33,7 @@ class Graph{
         {
             int n = i.next();
             if (!visited[n]) {
-                ans += DFSUtil(n, visited); // recurse to the next edge and increase the numebr of stations visited.v
+                ans += DFSUtil(n, visited); // recurse to the next edge/station in it's path and increase the numebr of stations visited.
             }
         }
         return ans; // return number of visited stations.
@@ -61,7 +61,7 @@ public class factory{
         for (int i = 0; i < N; i++) {
             int ans = g.DFS(i);
             if(ans >= N) {
-                out.println(i + 1); // if the number of visited stations from the DFS is equal to the number of stations then then it is possible to walk form station i to any other station. 
+                out.println(i + 1); // if the number of visited stations from the DFS is equal to the total number of stations then then it is possible to walk from station i to any other station. 
                 used = true;
                 break;
             }
