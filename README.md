@@ -1,4 +1,4 @@
-# USACO-Bronze-Collection 2014-Present
+# USACO-Bronze-Collection 2020-Present
 A collection of USACO bronze solutions for the purpose to help anyone starting their programming journey. 
 # Instructions
 1. Please don't just copy and paste code, you will not learn anything, take a look at my thought proccess and try to make a slightly different solution
